@@ -7,7 +7,10 @@ import { addItem } from '../../redux/cart/cart.actions';
     
 import './collection-item.styles.scss';
 
-const CollectionItem = ({id , name, price, imageUrl, addItem   }) => (
+const CollectionItem = ({ item, addItem }) => { 
+    const { name, price, imageUrl } = item;
+    
+    return (
     <div className="collection-item">
         <div
             className='image'
@@ -21,10 +24,12 @@ const CollectionItem = ({id , name, price, imageUrl, addItem   }) => (
             <span className="price">{ price }</span>
         
         </div>
-        <CustomButton> Add TO CART</CustomButton>
+            <CustomButton onClick={() => addItem(item)} inverted>
+                Add TO CART
+            </CustomButton>
     </div>
 
-)
+)}
 
 const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item))
